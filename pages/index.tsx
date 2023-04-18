@@ -43,7 +43,7 @@ function DemoMeetingTab({ label }: { label: string }) {
   };
   return (
     <div className={styles.tabContent}>
-      <p style={{ marginTop: 0 }}>Try LiveKit Meet for free with our live demo project.</p>
+      <p style={{ marginTop: 0 }}>Try Tribe Meet for free.</p>
       <button className="lk-button" onClick={startMeeting}>
         Start Meeting
       </button>
@@ -104,15 +104,15 @@ const Home = ({ tabIndex }: InferGetServerSidePropsType<typeof getServerSideProp
     <>
       <main className={styles.main} data-lk-theme="default">
         <div className="header">
-          <img src="/images/livekit-meet-home.svg" alt="LiveKit Meet" width="360" height="45" />
+          <img src="/images/Tribe_Meet_Core.png" alt="Tribe Meet" width="360" height="45" />
           <h2>
             Open source video conferencing app built on{' '}
-            <a href="https://github.com/livekit/components-js?ref=meet" rel="noopener">
-              LiveKit&nbsp;Components
+            <a href="https://github.com/tribe-health/components-js?ref=meet" rel="noopener">
+              Tribe Core and LiveKit&nbsp;Components
             </a>
             ,{' '}
-            <a href="https://livekit.io/cloud?ref=meet" rel="noopener">
-              LiveKit&nbsp;Cloud
+            <a href="https://meet.tribecore.io/" rel="noopener">
+              TribeCore&nbsp;Cloud
             </a>{' '}
             and Next.js.
           </h2>
@@ -124,11 +124,11 @@ const Home = ({ tabIndex }: InferGetServerSidePropsType<typeof getServerSideProp
       </main>
       <footer data-lk-theme="default">
         Hosted on{' '}
-        <a href="https://livekit.io/cloud?ref=meet" rel="noopener">
-          LiveKit Cloud
+        <a href="https://meet.tribecore.io/" rel="noopener">
+          Tribe Core
         </a>
         . Source code on{' '}
-        <a href="https://github.com/livekit/meet?ref=meet" rel="noopener">
+        <a href="https://github.com/tribe-health/meet?ref=meet" rel="noopener">
           GitHub
         </a>
         .

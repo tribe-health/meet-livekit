@@ -8,17 +8,17 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <DefaultSeo
-        title="LiveKit Meet | Conference app build with LiveKit Open Source"
+        title="Tribe Meet | Conference app build with LiveKit and Tribe Core"
         titleTemplate="%s"
-        defaultTitle="LiveKit Meet | Conference app build with LiveKit open source"
-        description="LiveKit is an open source WebRTC project that gives you everything needed to build scalable and real-time audio and/or video experiences in your applications."
+        defaultTitle="Tribe Meet | Conference app build with LiveKit and Tribe Core"
+        description="LiveKit and Tribe Core are open source projects that give you everything needed to build scalable and real-time audio and/or video experiences in your applications."
         twitter={{
-          handle: '@livekitted',
-          site: '@livekitted',
+          handle: '@gqadoniscto',
+          site: '@gqadoniscto',
           cardType: 'summary_large_image',
         }}
         openGraph={{
-          url: 'https://meet.livekit.io',
+          url: 'https://meet.tribecore.io',
           images: [
             {
               url: 'https://meet.livekit.io/images/livekit-meet-open-graph.png',
@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               type: 'image/png',
             },
           ],
-          site_name: 'LiveKit Meet',
+          site_name: 'Tribe Meet',
         }}
         additionalMetaTags={[
           {

@@ -49,14 +49,14 @@ footer {
 
 footer a,
 h2 a {
-  color: #ff6352;
+  color: #63ac8f;
   text-decoration-color: #a33529;
   text-underline-offset: 0.125em;
 }
 
 footer a:hover,
 h2 a {
-  text-decoration-color: #ff6352;
+  text-decoration-color: #63ac8f;
 }
 
 h2 a {
