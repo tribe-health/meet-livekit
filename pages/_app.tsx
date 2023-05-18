@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         title="Tribe Meet | Conference app build with LiveKit and Tribe Core"
         titleTemplate="%s"
         defaultTitle="Tribe Meet | Conference app build with LiveKit and Tribe Core"
-        description="LiveKit and Tribe Core are open source projects that give you everything needed to build scalable and real-time audio and/or video experiences in your applications."
+        description="Tribe Core and LiveKit are open source projects that give you everything needed to build scalable and real-time audio and/or video experiences in your applications."
         twitter={{
           handle: '@gqadoniscto',
           site: '@gqadoniscto',
@@ -21,8 +21,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           url: 'https://meet.tribecore.io',
           images: [
             {
-              url: 'https://meet.livekit.io/images/livekit-meet-open-graph.png',
-              width: 2000,
+              url: 'https://meet.livekit.io/images/tribe-meet-open-graph.png',
+              width: 1500,
               height: 1000,
               type: 'image/png',
             },

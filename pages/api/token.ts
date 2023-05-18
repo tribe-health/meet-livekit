@@ -14,7 +14,7 @@ const createToken = (userInfo: AccessTokenOptions, grant: VideoGrant) => {
   return at.toJwt();
 };
 
-const roomPattern = /\w{4}\-\w{4}/;
+const roomPattern = /^\S/;
 
 export default async function handleToken(req: NextApiRequest, res: NextApiResponse) {
   try {

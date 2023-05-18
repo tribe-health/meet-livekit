@@ -6,14 +6,35 @@ import {
   VideoConference,
   formatChatMessageLinks,
 } from '@livekit/components-react';
-import { LogLevel, RoomOptions, VideoPresets } from 'livekit-client';
+import dynamic from 'next/dynamic';
+
+const ChatPage = dynamic(() => import('./chatgpt/chat'), {
+  ssr: false, // This will load the component only on client-side
+});
+
+import { LogLevel, RoomOptions, VideoPresets, Participant, Room } from 'livekit-client';
 
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useMemo, useState } from 'react';
+
 import { DebugMode } from '../../lib/Debug';
 import { useServerUrl } from '../../lib/client-utils';
+import room from 'livekit-client/src/room/Room';
+import {
+  Button,
+  Container,
+  ModalBody,
+  ModalCloseButton, ModalContent,
+  ModalFooter,
+  ModalHeader, ModalOverlay,
+  useDisclosure,
+} from '@chakra-ui/react';
+import styles from './[name].module.css';
+import { Modal } from '@mantine/core';
+
+const BotIdentity = 'Presenter';
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -23,7 +44,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>LiveKit Meet</title>
+        <title>Tribe Meet</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -78,6 +99,8 @@ const ActiveRoom = ({ roomName, userChoices, onLeave }: ActiveRoomProps) => {
 
   const liveKitUrl = useServerUrl(region as string | undefined);
 
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
   const roomOptions = useMemo((): RoomOptions => {
     return {
       videoCaptureDefaults: {
@@ -111,6 +134,21 @@ const ActiveRoom = ({ roomName, userChoices, onLeave }: ActiveRoomProps) => {
         >
           <VideoConference chatMessageFormatter={formatChatMessageLinks} />
           <DebugMode logLevel={LogLevel.info} />
+
+          <Modal onClose={onClose} size="full" opened={isOpen} >
+            <Button onClick={() => onOpen() }>Ask</Button>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Modal Title</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <ChatPage />
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={onClose}>Close</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
         </LiveKitRoom>
       )}
     </>

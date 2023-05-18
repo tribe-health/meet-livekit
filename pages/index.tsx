@@ -36,15 +36,31 @@ function Tabs(props: TabsProps) {
   );
 }
 
-function DemoMeetingTab({ label }: { label: string }) {
+function DemoMeetingTab({ label }: {
+  label: string,
+}) {
   const router = useRouter();
+
+  const [roomName, setRoomName] = useState<string | undefined>();
   const startMeeting = () => {
-    router.push(`/rooms/${generateRoomId()}`);
+    router.push(`/rooms/${roomName}`);
   };
+
+  let roomLabel = 'Room name';
   return (
     <div className={styles.tabContent}>
-      <p style={{ marginTop: 0 }}>Try Tribe Meet for free.</p>
-      <button className="lk-button" onClick={startMeeting}>
+      <p style={{ marginTop: 0 }}>
+        <input
+          className="lk-form-control"
+          id="roomname"
+          name="roomname"
+          type="text"
+          placeholder={roomLabel}
+          onChange={(inputEl) => setRoomName(inputEl.target.value)}
+          autoComplete="off"
+        />
+      </p>
+      <button disabled={roomName === undefined || roomName.length === 0} className="lk-button" onClick={startMeeting}>
         Start Meeting
       </button>
     </div>
@@ -117,10 +133,9 @@ const Home = ({ tabIndex }: InferGetServerSidePropsType<typeof getServerSideProp
             and Next.js.
           </h2>
         </div>
-        <Tabs selectedIndex={tabIndex} onTabSelected={onTabSelected}>
+
           <DemoMeetingTab label="Demo" />
-          <CustomConnectionTab label="Custom" />
-        </Tabs>
+
       </main>
       <footer data-lk-theme="default">
         Hosted on{' '}
