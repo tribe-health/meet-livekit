@@ -8,8 +8,8 @@ import {
 } from '@livekit/components-react';
 import dynamic from 'next/dynamic';
 
-const ChatPage = dynamic(() => import('./chatgpt/chat'), {
-  ssr: false, // This will load the component only on client-side
+const ClientButton = dynamic(() => import('./clientbutton'), {
+  ssr: false,
 });
 
 import { LogLevel, RoomOptions, VideoPresets, Participant, Room } from 'livekit-client';
@@ -21,16 +21,6 @@ import { useMemo, useState } from 'react';
 
 import { DebugMode } from '../../lib/Debug';
 import { useServerUrl } from '../../lib/client-utils';
-import room from 'livekit-client/src/room/Room';
-import {
-  Button,
-  Container,
-  ModalBody,
-  ModalCloseButton, ModalContent,
-  ModalFooter,
-  ModalHeader, ModalOverlay,
-  useDisclosure,
-} from '@chakra-ui/react';
 import styles from './[name].module.css';
 import { Modal } from '@mantine/core';
 
@@ -99,7 +89,10 @@ const ActiveRoom = ({ roomName, userChoices, onLeave }: ActiveRoomProps) => {
 
   const liveKitUrl = useServerUrl(region as string | undefined);
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const handleOpenModal = () => {
+    window.open('https://tribechatgpt.tribecore.io', '_blank');
+  };
+
 
   const roomOptions = useMemo((): RoomOptions => {
     return {
@@ -135,20 +128,8 @@ const ActiveRoom = ({ roomName, userChoices, onLeave }: ActiveRoomProps) => {
           <VideoConference chatMessageFormatter={formatChatMessageLinks} />
           <DebugMode logLevel={LogLevel.info} />
 
-          <Modal onClose={onClose} size="full" opened={isOpen} >
-            <Button onClick={() => onOpen() }>Ask</Button>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>Modal Title</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <ChatPage />
-              </ModalBody>
-              <ModalFooter>
-                <Button onClick={onClose}>Close</Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
+          <ClientButton onClick={handleOpenModal} />
+
         </LiveKitRoom>
       )}
     </>

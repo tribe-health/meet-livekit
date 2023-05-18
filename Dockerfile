@@ -1,9 +1,9 @@
 # Stage 1
 FROM node:18-alpine AS deps
-RUN apk add --no-cache libc6-compat
+RUN apk update && apk add --no-cache libc6-compat git
 WORKDIR /app
 COPY package.json ./
-RUN  npm install --production
+RUN  yarn install
 
 # Stage 2
 FROM node:18-alpine AS builder
